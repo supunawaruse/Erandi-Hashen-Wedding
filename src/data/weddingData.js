@@ -12,10 +12,10 @@ export const couple = {
 
 export const event = {
   title: "Poruwa Ceremony & Reception",
-  dayName: "Saturday",
+  dayName: "Thursday",
   date: "22nd October 2026",
   // ISO string used by the countdown + calendar link — keep the offset for Colombo (+05:30)
-  isoDateTime: "2026-10-22T10:30:00+05:30",
+  isoDateTime: "2026-10-22T09:00:00+05:30",
   time: "09.00 AM Onwards",
   venueName: "Monarch Imperial Sri Jayawardenepura Kotte",
   mapUrl: "https://maps.app.goo.gl/JHHySe341PXvCpxj8",

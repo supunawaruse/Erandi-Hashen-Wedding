@@ -42,7 +42,7 @@
   background: transparent;
   border: none;
   border-bottom: 1px solid var(--line);
-  padding: 0.6rem 0.1rem;
+  padding: 0.6rem 12px;
   resize: vertical;
 }
 
