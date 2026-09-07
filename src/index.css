@@ -1,0 +1,112 @@
+@import url("https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Jost:wght@300;400;500;600&display=swap");
+
+:root {
+  /* ── Color tokens ── */
+  --ink: #3a2c16;         /* deep espresso-gold — primary text */
+  --ink-soft: #6b5636;
+  --ivory: #ffffff;       /* white background */
+  --ivory-deep: #f8f0dd;  /* soft gold-tinted cream for alternating sections */
+  --gold: #b8923f;        /* gold accent */
+  --gold-bright: #d8b876;
+  --wine: #9c6b46;        /* warm accent for the note section */
+  --line: rgba(184, 146, 63, 0.28);
+
+  /* ── Type tokens ── */
+  --font-display: "Cormorant Garamond", serif;
+  --font-body: "Jost", sans-serif;
+
+  color-scheme: light;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background: var(--ivory);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  margin: 0;
+  line-height: 1.1;
+}
+
+p {
+  margin: 0;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: var(--font-body);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* focus visibility for keyboard users */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* shared layout helpers */
+.section {
+  padding: clamp(4rem, 9vw, 7rem) 1.5rem;
+}
+
+.section-inner {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.eyebrow-rule {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.85rem;
+  margin-bottom: 1.75rem;
+}
+
+.eyebrow-rule::before,
+.eyebrow-rule::after {
+  content: "";
+  width: 36px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.eyebrow-rule span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  transform: rotate(45deg);
+}

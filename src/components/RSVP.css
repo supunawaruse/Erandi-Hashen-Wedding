@@ -1,0 +1,95 @@
+.rsvp {
+  background: var(--ivory);
+  color: var(--ink);
+  text-align: center;
+}
+
+.rsvp-heading {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-style: italic;
+  color: var(--ink);
+}
+
+.rsvp-sub {
+  margin-top: 0.75rem;
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  margin-bottom: 2.75rem;
+}
+
+.rsvp-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  text-align: left;
+}
+
+.rsvp-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+  color: var(--gold);
+}
+
+.rsvp-field input,
+.rsvp-field select,
+.rsvp-field textarea {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: transparent;
+  border: none;
+  border-bottom: 1px solid var(--line);
+  padding: 0.6rem 0.1rem;
+  resize: vertical;
+}
+
+.rsvp-field select option {
+  color: var(--ink);
+}
+
+.rsvp-field input::placeholder,
+.rsvp-field textarea::placeholder {
+  color: rgba(58, 44, 22, 0.35);
+}
+
+.rsvp-field input:focus,
+.rsvp-field select:focus,
+.rsvp-field textarea:focus {
+  border-bottom-color: var(--gold);
+}
+
+.rsvp-submit {
+  margin-top: 0.5rem;
+  align-self: center;
+  padding: 0.9rem 2.4rem;
+  background: var(--gold);
+  color: var(--ivory);
+  border: none;
+  font-size: 0.85rem;
+  letter-spacing: 0.06em;
+  cursor: pointer;
+  transition: background-color 0.25s ease;
+}
+
+.rsvp-submit:hover {
+  background: var(--ink);
+}
+
+.rsvp-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.rsvp-error {
+  text-align: center;
+  font-size: 0.82rem;
+  color: #c0483f;
+  margin-top: -0.5rem;
+}
+
+.rsvp-thanks {
+  text-align: center;
+}

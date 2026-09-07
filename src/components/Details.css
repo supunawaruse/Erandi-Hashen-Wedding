@@ -1,0 +1,149 @@
+.details {
+  background: var(--ivory-deep);
+  color: var(--ink);
+  text-align: center;
+}
+
+.details-heading {
+  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-style: italic;
+  margin-bottom: 3rem;
+  color: var(--ink);
+}
+
+.details-card {
+  background: var(--ivory);
+  border: 1px solid var(--line);
+  padding: clamp(2rem, 6vw, 3rem);
+  transition: box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.details-card:hover {
+  box-shadow: 0 18px 40px -24px rgba(58, 44, 22, 0.35);
+  transform: translateY(-3px);
+}
+
+.details-event {
+  font-size: 0.78rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 1.5rem;
+}
+
+.details-day {
+  font-size: 1rem;
+  color: var(--ink-soft);
+}
+
+.details-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+  margin: 2.25rem 0 0.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line);
+}
+
+.details-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.details-icon {
+  width: 22px;
+  height: 22px;
+  color: var(--gold);
+  margin-bottom: 0.2rem;
+}
+
+.details-item-label {
+  font-size: 0.68rem;
+  letter-spacing: 0.12em;
+  color: var(--gold);
+}
+
+.details-item-value {
+  font-size: 0.88rem;
+  color: var(--ink-soft);
+  line-height: 1.5;
+}
+
+@media (max-width: 560px) {
+  .details-grid {
+    grid-template-columns: 1fr;
+    gap: 1.25rem;
+  }
+}
+
+.details-date {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 6vw, 2.8rem);
+  font-style: italic;
+  margin: 0.35rem 0 1rem;
+  color: var(--ink);
+}
+
+.details-actions {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: 2.25rem;
+}
+
+.details-btn {
+  font-size: 0.8rem;
+  letter-spacing: 0.06em;
+  text-decoration: none;
+  padding: 0.85rem 1.8rem;
+  border: 1px solid var(--gold);
+  transition: background-color 0.25s ease, color 0.25s ease;
+}
+
+.details-btn--outline {
+  color: var(--ink);
+}
+
+.details-btn--outline:hover {
+  background: rgba(184, 146, 63, 0.1);
+}
+
+.details-btn--filled {
+  background: var(--gold);
+  color: var(--ivory);
+}
+
+.details-btn--filled:hover {
+  background: var(--ink);
+  border-color: var(--ink);
+}
+
+.note {
+  margin-top: 4.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.note-heading {
+  font-style: italic;
+  font-size: clamp(1.5rem, 4vw, 1.9rem);
+  color: var(--wine);
+  background: var(--ivory-deep);
+  display: inline-block;
+  padding: 0.2rem 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.note-paragraph {
+  font-size: 0.95rem;
+  line-height: 1.85;
+  color: var(--ink-soft);
+  margin-bottom: 1.1rem;
+}
+
+.note-paragraph:last-child {
+  margin-bottom: 0;
+}

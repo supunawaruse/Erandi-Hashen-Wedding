@@ -1,0 +1,141 @@
+.opener {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 2rem 1.5rem;
+  background: radial-gradient(120% 90% at 50% 20%, var(--ivory-deep) 0%, var(--ivory) 65%);
+  color: var(--ink);
+  cursor: pointer;
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.9s cubic-bezier(0.22, 1, 0.36, 1),
+    visibility 0.9s;
+}
+
+.opener-closing {
+  opacity: 0;
+  transform: scale(1.04);
+  pointer-events: none;
+}
+
+.opener-frame {
+  position: absolute;
+  inset: 22px;
+  border: 1px solid var(--line);
+  pointer-events: none;
+}
+
+.opener-content {
+  position: relative;
+  animation: opener-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes opener-rise {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.opener-kicker {
+  font-family: var(--font-body);
+  font-weight: 400;
+  letter-spacing: 0.14em;
+  font-size: 0.8rem;
+  color: var(--gold);
+  margin-bottom: 1.25rem;
+}
+
+.opener-names {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-style: italic;
+  font-size: clamp(2.4rem, 9vw, 4rem);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.4rem, 2.5vw, 1rem);
+  line-height: 1.1;
+  margin: 0;
+}
+
+.opener-amp {
+  font-style: normal;
+  color: var(--gold);
+  font-size: 0.6em;
+}
+
+.opener-tap {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.opener-tap-ring {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 1px solid var(--gold);
+  position: relative;
+}
+
+.opener-tap-ring::before {
+  content: "";
+  position: absolute;
+  inset: -8px;
+  border-radius: 50%;
+  border: 1px solid var(--line);
+  animation: opener-pulse 2.4s ease-out infinite;
+}
+
+.opener-tap-ring::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gold);
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
+@keyframes opener-pulse {
+  0% {
+    transform: scale(0.85);
+    opacity: 0.9;
+  }
+  75% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1.5);
+    opacity: 0;
+  }
+}
+
+.opener-tap-label {
+  font-size: 0.7rem;
+  letter-spacing: 0.16em;
+  color: var(--ink-soft);
+}
+
+@media (max-width: 480px) {
+  .opener-frame {
+    inset: 14px;
+  }
+}

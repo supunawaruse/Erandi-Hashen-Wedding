@@ -1,0 +1,32 @@
+.monogram {
+  position: relative;
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 1.75rem;
+  color: var(--gold);
+}
+
+.monogram-ring {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.monogram-letters {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.7rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  gap: 0.3rem;
+}
+
+.monogram-amp {
+  color: var(--gold);
+  font-size: 0.85em;
+}

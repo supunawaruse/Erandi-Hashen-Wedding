@@ -1,0 +1,77 @@
+.footer {
+  background: var(--ivory-deep);
+  color: var(--ink-soft);
+  text-align: center;
+  padding: 4rem 1.5rem 2.5rem;
+}
+
+.footer-inner {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.footer-thanks {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  max-width: 420px;
+  margin: 0 auto 1.75rem;
+}
+
+.footer-social {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+.footer-social a {
+  text-decoration: none;
+  color: var(--gold);
+  border-bottom: 1px solid transparent;
+}
+
+.footer-social a:hover {
+  border-bottom-color: var(--gold);
+}
+
+.footer-columns {
+  display: flex;
+  justify-content: center;
+  gap: clamp(2rem, 6vw, 5rem);
+  flex-wrap: wrap;
+  border-top: 1px solid var(--line);
+  border-bottom: 1px solid var(--line);
+  padding: 2.5rem 0;
+  margin-bottom: 2.5rem;
+}
+
+.footer-col h4 {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
+  letter-spacing: 0.14em;
+  color: var(--gold);
+  margin-bottom: 0.9rem;
+}
+
+.footer-col a,
+.footer-col p {
+  display: block;
+  font-size: 0.85rem;
+  text-decoration: none;
+  color: var(--ink-soft);
+  margin-bottom: 0.4rem;
+}
+
+.footer-made {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  color: var(--ink);
+  margin-bottom: 0.4rem;
+}
+
+.footer-copy {
+  font-size: 0.78rem;
+}
