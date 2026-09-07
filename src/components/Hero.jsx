@@ -1,5 +1,6 @@
 import { couple, event } from "../data/weddingData";
 import Monogram from "./Monogram";
+import TopMandala from "./TopMandala";
 import "./Hero.css";
 
 export default function Hero() {
@@ -7,9 +8,9 @@ export default function Hero() {
     <section className="hero">
       <div className="hero-frame" aria-hidden="true" />
       <div className="hero-glow" aria-hidden="true" />
+      <TopMandala />
 
       <div className="hero-content">
-        <Monogram />
         <p className="hero-kicker">We're getting married</p>
 
         <h1 className="hero-names">

@@ -1,0 +1,31 @@
+.top-mandala {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: min(100%, 920px);
+  margin-inline: auto;
+  pointer-events: none;
+  z-index: 2;
+  line-height: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.top-mandala img {
+  width: 100%;
+  height: auto;
+  max-height: 32vh;
+  object-fit: contain;
+  object-position: top center;
+}
+
+@media (max-width: 720px) {
+  .top-mandala {
+    width: 100%;
+  }
+
+  .top-mandala img {
+    max-height: 24vh;
+  }
+}

@@ -8,6 +8,8 @@
   justify-content: center;
   text-align: center;
   padding: 2rem 1.5rem;
+  isolation: isolate;
+  overflow: hidden;
   background: radial-gradient(120% 90% at 50% 20%, var(--ivory-deep) 0%, var(--ivory) 65%);
   color: var(--ink);
   cursor: pointer;
@@ -31,6 +33,7 @@
 
 .opener-content {
   position: relative;
+  z-index: 3;
   animation: opener-rise 1s cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 

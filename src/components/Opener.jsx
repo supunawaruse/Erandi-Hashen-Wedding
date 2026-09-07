@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { couple } from "../data/weddingData";
 import Monogram from "./Monogram";
+import TopMandala from "./TopMandala";
 import "./Opener.css";
 
 export default function Opener({ onOpen }) {
@@ -39,9 +40,10 @@ export default function Opener({ onOpen }) {
       }}
     >
       <div className="opener-frame" aria-hidden="true" />
+      <TopMandala />
 
       <div className="opener-content">
-        <Monogram />
+        {/* <Monogram /> */}
         <p className="opener-kicker">You're Invited</p>
 
         <h1 className="opener-names">
