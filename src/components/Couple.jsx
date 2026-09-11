@@ -4,7 +4,7 @@ import "./Couple.css";
 
 export default function Couple() {
   return (
-    <section className="section couple">
+    <section id="couple" className="section couple">
       <div className="section-inner">
         <Reveal className="eyebrow-rule" aria-hidden="true">
           <span />
