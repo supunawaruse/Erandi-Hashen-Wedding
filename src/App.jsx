@@ -11,9 +11,14 @@ import MusicPlayer from "./components/MusicPlayer";
 export default function App() {
   const [opened, setOpened] = useState(false);
 
+  const handleOpen = () => {
+    window.scrollTo(0, 0);
+    setOpened(true);
+  };
+
   return (
     <>
-      <Opener onOpen={() => setOpened(true)} />
+      <Opener onOpen={handleOpen} />
 
       {opened && (
         <>

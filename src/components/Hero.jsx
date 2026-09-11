@@ -1,5 +1,4 @@
 import { couple, event } from "../data/weddingData";
-import Monogram from "./Monogram";
 import TopMandala from "./TopMandala";
 import "./Hero.css";
 
