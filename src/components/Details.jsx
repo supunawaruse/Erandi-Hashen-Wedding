@@ -30,27 +30,33 @@ export default function Details() {
           <span />
         </Reveal>
 
-        <Reveal as="h2" className="details-heading">
+        <Reveal as="h2" className="details-heading gold-foil-heading">
           Wedding Details
         </Reveal>
 
         <Reveal className="details-card" delay={100}>
           <p className="details-event">{event.title}</p>
-          <p className="details-date">{event.date}</p>
+          <p className="details-date gold-foil-heading">{event.date}</p>
 
           <div className="details-grid">
             <div className="details-item">
-              <CalendarIcon className="details-icon" />
+              <div className="details-icon-badge" aria-hidden="true">
+                <CalendarIcon className="details-icon" />
+              </div>
               <span className="details-item-label">Day</span>
               <span className="details-item-value">{event.dayName}</span>
             </div>
             <div className="details-item">
-              <ClockIcon className="details-icon" />
+              <div className="details-icon-badge" aria-hidden="true">
+                <ClockIcon className="details-icon" />
+              </div>
               <span className="details-item-label">Time</span>
               <span className="details-item-value">{event.time}</span>
             </div>
             <div className="details-item">
-              <PinIcon className="details-icon" />
+              <div className="details-icon-badge" aria-hidden="true">
+                <PinIcon className="details-icon" />
+              </div>
               <span className="details-item-label">Venue</span>
               <span className="details-item-value">{event.venueName}</span>
             </div>
@@ -63,7 +69,7 @@ export default function Details() {
               target="_blank"
               rel="noreferrer"
             >
-              View Location
+              <span>View Location</span>
             </a>
             <a
               className="details-btn details-btn--filled"
@@ -71,18 +77,26 @@ export default function Details() {
               target="_blank"
               rel="noreferrer"
             >
-              Add to Calendar
+              <span>Add to Calendar</span>
             </a>
           </div>
         </Reveal>
 
         <Reveal className="note" delay={150}>
+          <div className="note-quote-mark" aria-hidden="true">“</div>
           <h3 className="note-heading">{note.heading}</h3>
-          {note.paragraphs.map((p, i) => (
-            <p className="note-paragraph" key={i}>
-              {p}
-            </p>
-          ))}
+          <div className="note-body">
+            {note.paragraphs.map((p, i) => (
+              <p className="note-paragraph" key={i}>
+                {p}
+              </p>
+            ))}
+          </div>
+          <div className="note-signoff" aria-hidden="true">
+            <span className="note-signoff-line" />
+            <span className="note-signoff-names">{couple.brideFirstName} &amp; {couple.groomFirstName}</span>
+            <span className="note-signoff-line" />
+          </div>
         </Reveal>
       </div>
     </section>

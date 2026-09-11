@@ -1,31 +1,58 @@
 .top-mandala {
   position: absolute;
   top: 0;
-  left: 0;
-  right: 0;
-  width: min(100%, 920px);
-  margin-inline: auto;
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(94%, 760px);
   pointer-events: none;
   z-index: 2;
   line-height: 0;
   display: flex;
   justify-content: center;
+  -webkit-mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 98%);
+  mask-image: linear-gradient(to bottom, rgba(0, 0, 0, 1) 55%, rgba(0, 0, 0, 0) 98%);
+  animation: mandala-float 8s ease-in-out infinite;
 }
 
-.top-mandala img {
+.top-mandala-img {
   width: 100%;
   height: auto;
-  max-height: 32vh;
+  max-height: clamp(170px, 26vh, 265px);
   object-fit: contain;
   object-position: top center;
+  filter: drop-shadow(0 6px 22px rgba(184, 146, 63, 0.24));
 }
 
-@media (max-width: 720px) {
+@keyframes mandala-float {
+  0%, 100% {
+    transform: translateX(-50%) translateY(0);
+    opacity: 0.95;
+  }
+  50% {
+    transform: translateX(-50%) translateY(3px);
+    opacity: 1;
+  }
+}
+
+@media (max-width: 768px) {
   .top-mandala {
-    width: 100%;
+    width: min(94%, 560px);
   }
 
-  .top-mandala img {
-    max-height: 24vh;
+  .top-mandala-img {
+    max-height: 22vh;
   }
 }
+
+@media (max-width: 480px) {
+  .top-mandala {
+    width: min(96%, 420px);
+  }
+
+  .top-mandala-img {
+    max-height: 19vh;
+  }
+}
+
+
+

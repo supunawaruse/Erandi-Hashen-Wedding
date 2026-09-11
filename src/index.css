@@ -79,11 +79,12 @@ select:focus-visible {
 
 /* shared layout helpers */
 .section {
-  padding: clamp(4rem, 9vw, 7rem) 1.5rem;
+  padding: clamp(4.5rem, 10vw, 7.5rem) 1.5rem;
+  position: relative;
 }
 
 .section-inner {
-  max-width: 720px;
+  max-width: 760px;
   margin: 0 auto;
 }
 
@@ -92,21 +93,35 @@ select:focus-visible {
   align-items: center;
   justify-content: center;
   gap: 0.85rem;
-  margin-bottom: 1.75rem;
+  margin-bottom: 1.5rem;
 }
 
-.eyebrow-rule::before,
+.eyebrow-rule::before {
+  content: "";
+  width: 48px;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--gold));
+}
+
 .eyebrow-rule::after {
   content: "";
-  width: 36px;
+  width: 48px;
   height: 1px;
-  background: var(--gold);
+  background: linear-gradient(to left, transparent, var(--gold));
 }
 
 .eyebrow-rule span {
-  width: 6px;
-  height: 6px;
-  border-radius: 50%;
+  width: 7px;
+  height: 7px;
   background: var(--gold);
   transform: rotate(45deg);
+  box-shadow: 0 0 8px rgba(184, 146, 63, 0.4);
 }
+
+.gold-foil-heading {
+  background: linear-gradient(135deg, #2b2010 0%, #443419 35%, #8f6e2e 70%, #2b2010 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 2px 14px rgba(184, 146, 63, 0.12));
+}
+

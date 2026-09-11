@@ -37,7 +37,7 @@ export default function Countdown() {
         <Reveal className="eyebrow-rule" aria-hidden="true">
           <span />
         </Reveal>
-        <Reveal as="h2" className="countdown-heading">
+        <Reveal as="h2" className="countdown-heading gold-foil-heading">
           Counting Down to Forever
         </Reveal>
         <Reveal as="p" className="countdown-sub" delay={80}>
@@ -47,12 +47,20 @@ export default function Countdown() {
         </Reveal>
 
         <Reveal className="countdown-grid" delay={150}>
-          {units.map((u) => (
-            <div className="countdown-unit" key={u.label}>
-              <span className="countdown-value">
-                {String(u.value).padStart(2, "0")}
-              </span>
-              <span className="countdown-label">{u.label}</span>
+          {units.map((u, i) => (
+            <div className="countdown-item-group" key={u.label}>
+              <div className="countdown-unit">
+                <span className="countdown-value gold-foil-heading">
+                  {String(u.value).padStart(2, "0")}
+                </span>
+                <span className="countdown-label">{u.label}</span>
+              </div>
+              {i < units.length - 1 && (
+                <div className="countdown-divider-dots" aria-hidden="true">
+                  <span />
+                  <span />
+                </div>
+              )}
             </div>
           ))}
         </Reveal>

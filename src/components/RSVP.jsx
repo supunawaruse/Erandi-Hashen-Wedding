@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import Reveal from "./Reveal";
 import "./RSVP.css";
 
@@ -9,20 +9,50 @@ const initialForm = {
   message: "",
 };
 
+const ATTENDING_OPTIONS = [
+  { value: "yes", label: "Yes, I'll be there" },
+  { value: "no", label: "Sorry, I can't make it" },
+];
+
 // Set in .env as VITE_RSVP_SCRIPT_URL — see apps-script/README.md for setup.
 const RSVP_ENDPOINT = import.meta.env.VITE_RSVP_SCRIPT_URL;
 
 export default function RSVP() {
   const [form, setForm] = useState(initialForm);
   const [status, setStatus] = useState("idle"); // idle | sending | sent | error
+  const [dropdownOpen, setDropdownOpen] = useState(false);
+  const [dropdownError, setDropdownError] = useState(false);
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    function handleClickOutside(e) {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target)) {
+        setDropdownOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   function handleChange(e) {
     const { name, value } = e.target;
     setForm((f) => ({ ...f, [name]: value }));
   }
 
+  function handleSelectAttending(val) {
+    setForm((f) => ({ ...f, attending: val }));
+    setDropdownOpen(false);
+    setDropdownError(false);
+  }
+
   async function handleSubmit(e) {
     e.preventDefault();
+
+    if (!form.attending) {
+      setDropdownError(true);
+      setDropdownOpen(true);
+      return;
+    }
 
     if (!RSVP_ENDPOINT) {
       // No Google Sheet endpoint configured yet — see apps-script/README.md.
@@ -37,10 +67,6 @@ export default function RSVP() {
     setStatus("sending");
 
     try {
-      // Apps Script web apps don't return CORS headers, so the response is
-      // opaque here (mode: "no-cors"). A resolved promise just means the
-      // request went out — check the "RSVP" tab in the sheet to confirm rows
-      // are landing, and Apps Script's execution log if something looks off.
       await fetch(RSVP_ENDPOINT, {
         method: "POST",
         mode: "no-cors",
@@ -61,9 +87,9 @@ export default function RSVP() {
           <div className="eyebrow-rule" aria-hidden="true">
             <span />
           </div>
-          <h2 className="rsvp-heading">Thank You</h2>
+          <h2 className="rsvp-heading gold-foil-heading">Thank You</h2>
           <p className="rsvp-sub">
-            Your RSVP has been recorded. We can't wait to celebrate with you!
+            Your RSVP has been recorded with love. We can't wait to celebrate with you!
           </p>
         </div>
       </section>
@@ -76,7 +102,7 @@ export default function RSVP() {
         <Reveal className="eyebrow-rule" aria-hidden="true">
           <span />
         </Reveal>
-        <Reveal as="h2" className="rsvp-heading">
+        <Reveal as="h2" className="rsvp-heading gold-foil-heading">
           RSVP
         </Reveal>
         <Reveal as="p" className="rsvp-sub" delay={80}>
@@ -96,21 +122,71 @@ export default function RSVP() {
             />
           </label>
 
-          <label className="rsvp-field">
+          <div className="rsvp-field">
             <span>Will you attend?</span>
-            <select
-              name="attending"
-              required
-              value={form.attending}
-              onChange={handleChange}
+            <div
+              className={`rsvp-custom-select ${dropdownError ? "has-error" : ""}`}
+              ref={dropdownRef}
             >
-              <option value="" disabled>
-                Select
-              </option>
-              <option value="yes">Yes, I'll be there</option>
-              <option value="no">Sorry, I can't make it</option>
-            </select>
-          </label>
+              <button
+                type="button"
+                className={`rsvp-select-trigger ${form.attending ? "has-value" : ""} ${
+                  dropdownOpen ? "is-open" : ""
+                }`}
+                onClick={() => setDropdownOpen((o) => !o)}
+                aria-haspopup="listbox"
+                aria-expanded={dropdownOpen}
+              >
+                <span className="rsvp-select-text">
+                  {form.attending
+                    ? ATTENDING_OPTIONS.find((o) => o.value === form.attending)?.label
+                    : "Select your response"}
+                </span>
+                <svg
+                  className={`rsvp-select-chevron ${dropdownOpen ? "chevron-open" : ""}`}
+                  width="14"
+                  height="14"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <polyline points="6 9 12 15 18 9" />
+                </svg>
+              </button>
+
+              {dropdownOpen && (
+                <ul className="rsvp-dropdown-menu" role="listbox">
+                  {ATTENDING_OPTIONS.map((opt) => (
+                    <li
+                      key={opt.value}
+                      role="option"
+                      aria-selected={form.attending === opt.value}
+                      className={`rsvp-dropdown-item ${
+                        form.attending === opt.value ? "is-selected" : ""
+                      }`}
+                      onClick={() => handleSelectAttending(opt.value)}
+                    >
+                      <span>{opt.label}</span>
+                      {form.attending === opt.value && (
+                        <span className="rsvp-item-check" aria-hidden="true">
+                          ✓
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </div>
+            {dropdownError && !form.attending && (
+              <span className="rsvp-field-hint">
+                Please select whether you will attend
+              </span>
+            )}
+          </div>
 
           <label className="rsvp-field">
             <span>Number of Guests</span>
@@ -119,6 +195,7 @@ export default function RSVP() {
               name="guests"
               min="1"
               max="10"
+              placeholder="1"
               value={form.guests}
               onChange={handleChange}
             />

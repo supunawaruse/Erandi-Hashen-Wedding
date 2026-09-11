@@ -1,53 +1,113 @@
 .countdown {
-  background: var(--ivory);
+  background: radial-gradient(120% 90% at 50% 25%, #fffdf8 0%, var(--ivory) 100%);
   text-align: center;
 }
 
 .countdown-heading {
-  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-size: clamp(2.2rem, 5.2vw, 2.9rem);
   font-style: italic;
+  letter-spacing: 0.02em;
 }
 
 .countdown-sub {
   margin-top: 0.75rem;
-  font-size: 0.9rem;
+  font-size: 0.92rem;
   color: var(--ink-soft);
-  margin-bottom: 3rem;
+  margin-bottom: 3.5rem;
+  letter-spacing: 0.04em;
 }
 
 .countdown-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(70px, 1fr));
-  gap: clamp(0.6rem, 3vw, 1.5rem);
-  max-width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: clamp(0.5rem, 2vw, 1.2rem);
+  max-width: 640px;
   margin: 0 auto;
 }
 
+.countdown-item-group {
+  display: flex;
+  align-items: center;
+  gap: clamp(0.5rem, 2vw, 1.2rem);
+  flex: 1;
+}
+
+/* ── Floating Gilded Countdown Unit ── */
 .countdown-unit {
+  flex: 1;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  padding: 1.25rem 0.5rem;
-  border: 1px solid var(--line);
-  transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+  gap: 0.55rem;
+  padding: 1.6rem 0.6rem;
+  border-radius: 4px;
+  background: #ffffff;
+  border: 1px solid rgba(184, 146, 63, 0.24);
+  box-shadow: 0 8px 24px -12px rgba(58, 44, 22, 0.1);
+  transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.35s ease, border-color 0.35s ease;
 }
 
 .countdown-unit:hover {
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   border-color: var(--gold);
-  box-shadow: 0 14px 30px -22px rgba(58, 44, 22, 0.4);
+  box-shadow: 0 16px 36px -16px rgba(184, 146, 63, 0.32);
 }
 
 .countdown-value {
   font-family: var(--font-display);
-  font-size: clamp(1.8rem, 6vw, 2.6rem);
-  color: var(--ink);
+  font-size: clamp(2.2rem, 6.5vw, 3.2rem);
+  font-weight: 500;
   font-variant-numeric: tabular-nums;
+  line-height: 1;
 }
 
 .countdown-label {
-  font-size: 0.68rem;
-  letter-spacing: 0.12em;
+  font-family: var(--font-body);
+  font-size: 0.72rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
   color: var(--gold);
+  font-weight: 500;
 }
+
+/* ── Delicate Gold Separator Dots ── */
+.countdown-divider-dots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.5;
+}
+
+.countdown-divider-dots span {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+@media (max-width: 520px) {
+  .countdown-grid {
+    gap: 0.4rem;
+  }
+
+  .countdown-item-group {
+    gap: 0.4rem;
+  }
+
+  .countdown-unit {
+    padding: 1.2rem 0.25rem;
+  }
+
+  .countdown-divider-dots {
+    display: none;
+  }
+
+  .countdown-label {
+    font-size: 0.65rem;
+    letter-spacing: 0.12em;
+  }
+}
+
