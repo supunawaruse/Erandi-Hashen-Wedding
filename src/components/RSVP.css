@@ -1,53 +1,70 @@
 .rsvp {
-  background: var(--ivory);
+  background: radial-gradient(120% 90% at 50% 25%, #fffdfa 0%, var(--ivory-deep) 100%);
   color: var(--ink);
   text-align: center;
 }
 
 .rsvp-heading {
-  font-size: clamp(2rem, 5vw, 2.6rem);
+  font-size: clamp(2.2rem, 5.2vw, 2.9rem);
   font-style: italic;
-  color: var(--ink);
+  letter-spacing: 0.02em;
 }
 
 .rsvp-sub {
   margin-top: 0.75rem;
-  font-size: 0.88rem;
+  font-size: 0.92rem;
   color: var(--ink-soft);
-  margin-bottom: 2.75rem;
+  margin-bottom: 3.2rem;
+  letter-spacing: 0.04em;
 }
 
+/* ── Refined Airy RSVP Form Card ── */
 .rsvp-form {
+  max-width: 560px;
+  margin: 0 auto;
   display: flex;
   flex-direction: column;
-  gap: 1.4rem;
+  gap: 1.75rem;
   text-align: left;
+  background: #ffffff;
+  padding: clamp(2rem, 6.5vw, 3.25rem);
+  border: 1px solid rgba(184, 146, 63, 0.24);
+  border-radius: 4px;
+  box-shadow: 0 12px 38px -18px rgba(58, 44, 22, 0.12), 0 0 1px rgba(184, 146, 63, 0.25);
+  transition: box-shadow 0.4s ease;
+}
+
+.rsvp-form:hover {
+  box-shadow: 0 20px 48px -20px rgba(58, 44, 22, 0.18), 0 0 1px rgba(184, 146, 63, 0.35);
 }
 
 .rsvp-field {
   display: flex;
   flex-direction: column;
   gap: 0.5rem;
-  font-size: 0.78rem;
-  letter-spacing: 0.06em;
+}
+
+.rsvp-field span {
+  font-family: var(--font-body);
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
   color: var(--gold);
+  font-weight: 500;
 }
 
 .rsvp-field input,
-.rsvp-field select,
 .rsvp-field textarea {
   font-family: var(--font-body);
   font-size: 0.95rem;
   color: var(--ink);
   background: transparent;
   border: none;
-  border-bottom: 1px solid var(--line);
-  padding: 0.6rem 12px;
+  border-bottom: 1px solid rgba(184, 146, 63, 0.3);
+  padding: 0.75rem 0.25rem;
   resize: vertical;
-}
-
-.rsvp-field select option {
-  color: var(--ink);
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
 }
 
 .rsvp-field input::placeholder,
@@ -56,40 +73,174 @@
 }
 
 .rsvp-field input:focus,
-.rsvp-field select:focus,
 .rsvp-field textarea:focus {
   border-bottom-color: var(--gold);
+  box-shadow: 0 1px 0 0 var(--gold);
 }
 
-.rsvp-submit {
-  margin-top: 0.5rem;
-  align-self: center;
-  padding: 0.9rem 2.4rem;
-  background: var(--gold);
-  color: var(--ivory);
+/* ── Custom Luxury Dropdown UI ── */
+.rsvp-custom-select {
+  position: relative;
+  width: 100%;
+}
+
+.rsvp-select-trigger {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  color: var(--ink);
+  background: transparent;
   border: none;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
+  border-bottom: 1px solid rgba(184, 146, 63, 0.3);
+  padding: 0.75rem 0.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   cursor: pointer;
-  transition: background-color 0.25s ease;
+  text-align: left;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  outline: none;
+}
+
+.rsvp-select-text {
+  color: var(--ink);
+}
+
+.rsvp-select-trigger.has-value {
+  color: var(--ink);
+}
+
+.rsvp-select-trigger:focus,
+.rsvp-select-trigger.is-open {
+  border-bottom-color: var(--gold);
+  box-shadow: 0 1px 0 0 var(--gold);
+}
+
+.rsvp-custom-select.has-error .rsvp-select-trigger {
+  border-bottom-color: #c0483f;
+}
+
+.rsvp-select-chevron {
+  color: var(--gold);
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  flex-shrink: 0;
+  margin-left: 0.5rem;
+}
+
+.rsvp-select-chevron.chevron-open {
+  transform: rotate(180deg);
+}
+
+.rsvp-dropdown-menu {
+  position: absolute;
+  top: calc(100% + 6px);
+  left: 0;
+  right: 0;
+  z-index: 40;
+  background: #ffffff;
+  border: 1px solid rgba(184, 146, 63, 0.35);
+  border-radius: 4px;
+  box-shadow: 0 14px 36px rgba(58, 44, 22, 0.16), 0 2px 6px rgba(184, 146, 63, 0.12);
+  padding: 0.4rem;
+  list-style: none;
+  margin: 0;
+  animation: rsvp-drop 0.24s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+@keyframes rsvp-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.rsvp-dropdown-item {
+  padding: 0.75rem 1rem;
+  border-radius: 3px;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
+  color: var(--ink);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.rsvp-dropdown-item:hover {
+  background: rgba(184, 146, 63, 0.12);
+}
+
+.rsvp-dropdown-item.is-selected {
+  background: rgba(184, 146, 63, 0.18);
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.rsvp-item-check {
+  color: var(--gold);
+  font-size: 0.95rem;
+  font-weight: bold;
+}
+
+.rsvp-field-hint {
+  font-size: 0.74rem;
+  color: #c0483f;
+  margin-top: 0.2rem;
+  letter-spacing: 0.02em;
+}
+
+/* ── Royal Gold Foil Submit Button ── */
+.rsvp-submit {
+  margin-top: 1rem;
+  align-self: center;
+  padding: 1rem 2.8rem;
+  background: linear-gradient(135deg, #b8923f 0%, #d4ad56 50%, #b8923f 100%);
+  color: #ffffff;
+  border: 1px solid var(--gold);
+  border-radius: 2px;
+  font-family: var(--font-body);
+  font-size: 0.82rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.3s ease, background 0.3s ease;
+  box-shadow: 0 4px 18px rgba(184, 146, 63, 0.32);
 }
 
 .rsvp-submit:hover {
-  background: var(--ink);
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #a37f32 0%, #c49d47 50%, #a37f32 100%);
+  box-shadow: 0 8px 26px rgba(184, 146, 63, 0.44);
 }
 
 .rsvp-submit:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+  transform: none;
 }
 
 .rsvp-error {
   text-align: center;
-  font-size: 0.82rem;
+  font-size: 0.85rem;
   color: #c0483f;
-  margin-top: -0.5rem;
+  margin-top: -0.25rem;
 }
 
 .rsvp-thanks {
   text-align: center;
+  padding: 3rem 1.5rem;
 }
+
+.rsvp-thanks .rsvp-sub {
+  margin-top: 1rem;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: var(--ink);
+}
+

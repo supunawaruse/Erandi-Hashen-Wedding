@@ -104,7 +104,6 @@ export default function Hero() {
             <span className="hero-date-sep">, </span>
             <span className="hero-full-date">{event.date}</span>
           </p>
-          <p className="hero-venue">{event.venueName}</p>
         </div>
       </div>
 
