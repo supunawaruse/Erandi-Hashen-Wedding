@@ -56,29 +56,52 @@ export default function Opener({ onOpen }) {
     };
   }, [stage]);
 
-  function handleOpen() {
-    if (stage !== "idle") return;
+  const timersRef = useRef([]);
 
-    // Reset tilt smoothly for cinematic opening
-    setTilt({ x: 0, y: 0, lightX: 50, lightY: 35 });
-    setStage("opening");
+  // Cleanup timers on unmount
+  useEffect(() => {
+    return () => {
+      timersRef.current.forEach((id) => clearTimeout(id));
+      timersRef.current = [];
+    };
+  }, []);
 
-    // Phase 1: Flap opens in 3D (0 -> 700ms)
-    // Phase 2: Card slides up out of envelope pocket (700ms)
-    setTimeout(() => {
-      setStage("extracted");
-    }, 700);
+  function triggerDissolve() {
+    timersRef.current.forEach((id) => clearTimeout(id));
+    timersRef.current = [];
 
-    // Phase 3: Mount the main website content underneath in advance (1300ms)
-    setTimeout(() => {
-      onOpen?.();
-      setStage("dissolving");
-    }, 1500);
+    onOpen?.();
+    setStage("dissolving");
 
-    // Phase 4: Final unmount of the opener overlay (2300ms)
-    setTimeout(() => {
+    // Phase 4: Final unmount of the opener overlay after fade animation
+    const fadeTimer = setTimeout(() => {
       setHidden(true);
-    }, 2350);
+    }, 850);
+    timersRef.current.push(fadeTimer);
+  }
+
+  function handleOpen() {
+    if (stage === "idle") {
+      // Reset tilt smoothly for cinematic opening
+      setTilt({ x: 0, y: 0, lightX: 50, lightY: 35 });
+      setStage("opening");
+
+      // Phase 1: Flap opens in 3D (0 -> 700ms)
+      // Phase 2: Card slides up out of envelope pocket (700ms)
+      const extractTimer = setTimeout(() => {
+        setStage("extracted");
+
+        // Phase 3: Keep card visible for 3 seconds so guests can comfortably read
+        const readingTimer = setTimeout(() => {
+          triggerDissolve();
+        }, 3000);
+        timersRef.current.push(readingTimer);
+      }, 700);
+      timersRef.current.push(extractTimer);
+    } else if (stage === "extracted") {
+      // Allow early tap/click anywhere to immediately skip the wait time
+      triggerDissolve();
+    }
   }
 
   if (hidden) return null;
@@ -93,7 +116,11 @@ export default function Opener({ onOpen }) {
       ref={containerRef}
       role="button"
       tabIndex={0}
-      aria-label="Tap to open the wedding invitation"
+      aria-label={
+        stage === "extracted"
+          ? "Tap anywhere to continue to wedding website"
+          : "Tap to open the wedding invitation"
+      }
       onClick={handleOpen}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
