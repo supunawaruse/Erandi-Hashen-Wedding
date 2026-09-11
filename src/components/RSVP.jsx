@@ -195,6 +195,7 @@ export default function RSVP() {
               name="guests"
               min="1"
               max="10"
+              placeholder="1"
               value={form.guests}
               onChange={handleChange}
             />

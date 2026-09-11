@@ -44,7 +44,7 @@
   gap: 0.5rem;
 }
 
-.rsvp-field span {
+.rsvp-field > span {
   font-family: var(--font-body);
   font-size: 0.74rem;
   letter-spacing: 0.16em;
@@ -103,10 +103,15 @@
 }
 
 .rsvp-select-text {
-  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  font-weight: 400;
+  color: rgba(58, 44, 22, 0.35);
+  transition: color 0.25s ease;
 }
 
-.rsvp-select-trigger.has-value {
+.rsvp-select-trigger.has-value .rsvp-select-text {
   color: var(--ink);
 }
 
